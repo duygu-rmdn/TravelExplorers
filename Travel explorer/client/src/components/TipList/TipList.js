@@ -18,7 +18,7 @@ export const TipList = () => {
                     </h1>
                 </div>
                 <div className="row g-4">
-                    {tips.map(x =>  <TipItem key={x._id} {...x.values} /> )}
+                    {tips.map(x =>  <TipItem key={x._id} {...x.values} id={x._id}/> )}
 
                     {tips.length === 0 &&
                         (<>

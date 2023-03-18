@@ -1,16 +1,18 @@
+import { Link } from "react-router-dom";
 import { categories } from "../../../constants";
 
 export const TipItem = ({
-    _id,
+    id,
     category,
     title,
-    conclusion
+    conclusion,
+    imageUrl
 }) => {
     return (
         <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div className="room-item shadow rounded overflow-hidden">
                 <div className="position-relative">
-                    <img className="img-fluid" src="img/room-1.jpg" alt="" />
+                    <img className="img-fluid" src={imageUrl} alt="tip image" />
                     <small className="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">
                         {category}
                     </small>
@@ -28,9 +30,9 @@ export const TipItem = ({
                         {conclusion}
                     </p>
                     <div className="d-flex justify-content-between">
-                        <a className="btn btn-sm btn-dark rounded py-2 px-4" href="">
+                        <Link to={`/tips/${id}`} className="btn btn-sm btn-dark rounded py-2 px-4">
                             View Detail
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

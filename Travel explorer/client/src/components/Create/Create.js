@@ -1,5 +1,5 @@
 import { CreateForm } from "./CreateForm/CreateForm";
-import { PhotoGrid } from "./PhotoGrid/PhotoGrid";
+import { PhotoGrid } from "../PhotoGrid/PhotoGrid";
 
 export const Create = () => {
     return (

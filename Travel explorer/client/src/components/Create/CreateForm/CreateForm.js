@@ -48,6 +48,7 @@ export const CreateForm = () => {
                                 name="category"
                                 value={formValues.category} 
                                     onChange={onChangeHandler}>
+                                        
                                     {categories.map((x) => (
                                         <option key={x.id} value={x.name}>
                                             {x.name}
@@ -65,7 +66,7 @@ export const CreateForm = () => {
                                     value={formValues.country}
                                     onChange={onChangeHandler}>
                                     {options.map((option, index) => (
-                                        <option key={index} value={option.value}>
+                                        <option key={index} value={option.label}>
                                             {option.label}
                                         </option>
                                     ))}

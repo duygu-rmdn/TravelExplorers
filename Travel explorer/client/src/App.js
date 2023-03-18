@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import * as tipsService from './service/tipsService';
 
-import { baseUrl } from './constants';
 import { Up } from "./components/Up/Up";
 import { Home } from "./components/Home/Home";
 import { About } from './components/About/About';
@@ -15,6 +14,7 @@ import { TipList } from './components/TipList/TipList';
 import { Categories } from './components/Categories/Categories';
 import { Testimonial } from "./components/Testimonial/Testimonial";
 import { TipContext } from './contexts/tipContext';
+import { Details } from './components/Details/Details';
 
 function App() {
     const navigate = useNavigate();
@@ -51,6 +51,7 @@ function App() {
                     <Route path='/tips' element={<TipList />} />
                     <Route path='/categories' element={<Categories />} />
                     <Route path='/create' element={<Create />} />
+                    <Route path='/tips/:tipId' element={<Details />} />
                 </Routes>
             </div>
             <Testimonial />
