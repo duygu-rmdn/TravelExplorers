@@ -10,7 +10,7 @@ export const Create = () => {
                         Create
                     </h6>
                     <h1 className="mb-5">
-                        Share your <span className="text-primary text-uppercase">Travel hack</span>
+                        Share your <span className="text-primary text-uppercase">Travel tips</span>
                     </h1>
                 </div>
                 <div className="row g-5">

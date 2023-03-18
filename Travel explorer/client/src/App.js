@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import * as tipsService from './service/tipsService';
+
 import { baseUrl } from './constants';
 import { Up } from "./components/Up/Up";
 import { Home } from "./components/Home/Home";
@@ -9,52 +11,44 @@ import { Header } from "./components/Header/Header";
 import { Spiner } from "./components/Spiner/Spiner";
 import { Create } from './components/Create/Create';
 import { Footer } from './components/Footer/Footer';
-import { HackList } from './components/HackList/HackList';
+import { TipList } from './components/TipList/TipList';
 import { Categories } from './components/Categories/Categories';
 import { Testimonial } from "./components/Testimonial/Testimonial";
-import { HackContext } from './contexts/hackContext';
+import { TipContext } from './contexts/tipContext';
 
 function App() {
     const navigate = useNavigate();
-    const [hacks, setHacks] = useState([]);
+    const [tips, setTips] = useState([]);
 
-    // useEffect(() => {
-    //     fetch(baseUrl)
-    //         .then(res => res.json())
-    //         .then(result => {
-    //             setHacks(Object.values(result));
-    //         });
-    // }, []);
+    useEffect(() => {
+        tipsService.getAll()
+        .then(result => setTips(result));
+    }, []);
 
-    const onHackAddSubmit = async (values) => {
-        const response = await fetch(baseUrl, {
-            method: 'POST',
-            headers: {
-                'content-type': 'applicatin/json'
-            },
-            body: JSON.stringify(values)
-        });
-        const result = await response.json();
-        console.log(result);
-        navigate('/hacks');
-        setHacks(state => [...state, result]);
+
+    const onTipAddSubmit = async (values) => {
+    const tip = await tipsService.create({values});
+
+        navigate('/tips');
+        setTips(state => [...state, tip]);
     };
 
     const contextValue = {
-        onHackAddSubmit,
+        onTipAddSubmit,
+        tips,
     };
 
     
     
     return (
-        <HackContext.Provider value={contextValue}>
+        <TipContext.Provider value={contextValue}>
             <Header />
             <div className="container-xxl bg-white p-0">
                 {/* <Spiner /> */}
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/about' element={<About />} />
-                    <Route path='/hacks' element={<HackList />} />
+                    <Route path='/tips' element={<TipList />} />
                     <Route path='/categories' element={<Categories />} />
                     <Route path='/create' element={<Create />} />
                 </Routes>
@@ -62,7 +56,7 @@ function App() {
             <Testimonial />
             <Footer />
             <Up />
-        </HackContext.Provider>
+        </TipContext.Provider>
     );
 };
 

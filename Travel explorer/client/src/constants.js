@@ -1,12 +1,20 @@
-export const baseUrl = 'http://localhost:3030/jsonstore/hacks';
+export const baseUrl = 'http://localhost:3030/jsonstore/tips';
 
 export const categories = [
     {
         id: 1,
-        name: "Category"
+        name: "Sea"
     },
     {
         id: 2,
-        name: "Another category"
+        name: "Montain"
+    },
+    {
+        id: 3,
+        name: "Luggage"
+    },
+    {
+        id: 4,
+        name: "Flats"
     }
 ];

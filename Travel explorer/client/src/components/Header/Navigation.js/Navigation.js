@@ -22,8 +22,8 @@ export const Navigation = () => {
                 <Link to={'/'} className="nav-item nav-link active">
                     Home
                 </Link>
-                <Link to={'/hacks'} className="nav-item nav-link">
-                    Hacks
+                <Link to={'/tips'} className="nav-item nav-link">
+                    Tips
                 </Link>
                 <Link to={'/categories'} className="nav-item nav-link">
                     Categories

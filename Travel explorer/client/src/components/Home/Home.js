@@ -1,8 +1,8 @@
-import { About } from "../About/About";
-import { Categories } from "../Categories/Categories";
-import { Search } from "../Search/Search";
-import { Carousel } from "../Carousel/Carousel";
-import { HackList } from "../HackList/HackList";
+import { About } from '../About/About';
+import { Categories } from '../Categories/Categories';
+import { Search } from '../Search/Search';
+import { Carousel } from '../Carousel/Carousel';
+import { TipList } from '../TipList/TipList';
 
 export const Home = () => {
     return (
@@ -10,7 +10,7 @@ export const Home = () => {
             <Carousel />
             <Search />
             <About />
-            <HackList />
+            <TipList />
             <Categories />
         </>
     );

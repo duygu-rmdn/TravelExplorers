@@ -3,10 +3,10 @@ import React, { useState, useMemo } from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
-import { HackContext } from "../../../contexts/hackContext";
+import { TipContext } from "../../../contexts/tipContext";
 
 export const CreateForm = () => {
-    const { onHackAddSubmit } = useContext(HackContext);
+    const { onTipAddSubmit } = useContext(TipContext);
     const options = useMemo(() => countryList().getData(), []);
 
     const { formValues, onChangeHandler, onSubmit } = useForm({
@@ -18,7 +18,7 @@ export const CreateForm = () => {
         country: '',
         maxPrice: '',
         nights: '',
-    }, onHackAddSubmit);
+    }, onTipAddSubmit);
 
     
 
@@ -48,8 +48,8 @@ export const CreateForm = () => {
                                 name="category"
                                 value={formValues.category} 
                                     onChange={onChangeHandler}>
-                                    {categories.map((x, index) => (
-                                        <option key={index} value={x.id}>
+                                    {categories.map((x) => (
+                                        <option key={x.id} value={x.name}>
                                             {x.name}
                                         </option>
                                     ))}
@@ -160,7 +160,7 @@ export const CreateForm = () => {
                             </div>
                         </div>
                         <div className="col-12">
-                            <button className="btn btn-primary w-100 py-3" type="submit" value="Create Hack">
+                            <button className="btn btn-primary w-100 py-3" type="submit" value="Create Tips">
                                 Share
                             </button>
                         </div>

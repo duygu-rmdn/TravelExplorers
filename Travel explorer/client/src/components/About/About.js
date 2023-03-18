@@ -14,7 +14,7 @@ export const About = () => {
                             <span className="text-primary text-uppercase">Travel explorer</span>
                         </h1>
                         <p className="mb-4">
-                            //ToDo: Here you can find traver hacks.....
+                            //ToDo: Here you can find traver tips.....
                         </p>
                         <div className="row g-3 pb-4">
                             <div className="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
@@ -24,7 +24,7 @@ export const About = () => {
                                         <h2 className="mb-1" data-toggle="counter-up">
                                             1234
                                         </h2>
-                                        <p className="mb-0">Hacks</p>
+                                        <p className="mb-0">Tips</p>
                                     </div>
                                 </div>
                             </div>
@@ -51,8 +51,8 @@ export const About = () => {
                                 </div>
                             </div>
                         </div>
-                        <Link to={"/hacks"} className="btn btn-primary py-3 px-5 mt-2" >
-                            View hacks
+                        <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
+                            View tips
                         </Link>
                     </div>
                     <div className="col-lg-6">
