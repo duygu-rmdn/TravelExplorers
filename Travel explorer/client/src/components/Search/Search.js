@@ -25,7 +25,7 @@ export const Search = () => {
                                     <input
                                         type="text"
                                         className="form-control datetimepicker-input"
-                                        placeholder="Min price"
+                                        placeholder="Category"
                                         data-target="#date2"
                                         data-toggle="datetimepicker"
                                     />
