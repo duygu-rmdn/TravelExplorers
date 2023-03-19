@@ -38,7 +38,16 @@ export const Details = () => {
 
                         <p>Max price: </p>
                         {tip?.values?.maxPrice && (<h3 className="mb-4">{tip.values.maxPrice} </h3>)}
+                    </div>
+                    <div className="col-lg-6">
+                        <img
+                            className="img-fluid rounded w-75 wow zoomIn"
+                            data-wow-delay="0.7s"
+                            src={tip?.values?.imageUrl && tip.values.imageUrl}
+                        />
 
+                    </div>
+                    <div className="col-lg-12">
                         <div className="row g-3 pb-4">
                             <p>Description:</p>
                             <div className="col-sm-12 wow fadeIn" data-wow-delay="0.1s">
@@ -56,14 +65,7 @@ export const Details = () => {
                         </Link>
                     </div>
 
-                    <div className="col-lg-6">
-                        <img
-                            className="img-fluid rounded w-75 wow zoomIn"
-                            data-wow-delay="0.7s"
-                            src={tip?.values?.imageUrl && tip.values.imageUrl}
-                        />
 
-                    </div>
                 </div>
             </div>
         </div>
