@@ -19,6 +19,6 @@ export const create = async (tipData) => {
 };
 
 export const remove = async (tipId) => {
-    const result = await request.del(baseUrl, tipId);
+    const result = await request.del(`${baseUrl}/${tipId}`);
     return result;
 };

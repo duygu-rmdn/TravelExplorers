@@ -34,12 +34,6 @@ function App() {
         setTips(state => [...state, tip]);
     };
 
-    // const onDeleteClick = async (tipId) => {
-    //     const tip = await tipsService.remove(tipId);
-    //     setTips(state => state.filter(x => x._id !== tipId));
-    //     navigate('/tips');
-    // }
-
     const onDeleteClick = () => {
         setShowDeleteModal(true);
     };
@@ -52,7 +46,7 @@ function App() {
 
         const tip = await tipsService.remove(tipId);
         setTips(state => state.filter(x => x._id !== tipId));
-        
+
         setShowDeleteModal(false);
         navigate('/tips');
     }
