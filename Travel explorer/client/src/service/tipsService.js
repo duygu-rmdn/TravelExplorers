@@ -13,7 +13,12 @@ export const getOne = async (tipId) => {
     return result;
 };
 
-export const create = async (gameData) => {
-    const result = await request.post(baseUrl, gameData);
+export const create = async (tipData) => {
+    const result = await request.post(baseUrl, tipData);
+    return result;
+};
+
+export const remove = async (tipId) => {
+    const result = await request.del(baseUrl, tipId);
     return result;
 };

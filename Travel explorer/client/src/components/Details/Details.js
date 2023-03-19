@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { TipContext } from '../../contexts/tipContext';
 import * as tipServise from '../../service/tipsService';
+import { DeleteModal } from './DeleteModal/DeleteModal';
 
 export const Details = () => {
     const { tipId } = useParams();
     const [tip, setTip] = useState({});
     //const [reviews, setReviews] = useState('');
+    const {onDeleteClick} = useContext(TipContext);
 
     useEffect(() => {
         tipServise.getOne(tipId)
@@ -13,11 +16,6 @@ export const Details = () => {
                 setTip(result);
             });
     }, [tipId]);
-
-
-    // const { tips } = useContext(TipContext);
-    // const result = tips.filter(x => x._id === tipId);
-    // const tip = result[0];
 
     return (
         <div className="container-xxl py-5">
@@ -61,10 +59,13 @@ export const Details = () => {
                         <p>Conclusion: </p>
                         {tip?.values?.conclusion && (<h6 className="mb-4">{tip.values.conclusion} </h6>)}
                         <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
-                            Bact to tips
-                        </Link>
+                            Back to tips
+                        </Link> {" "}
+                        <button  className="btn btn-danger py-3 px-5 mt-2" onClick={onDeleteClick}>
+                            Delete tip
+                        </button >
                     </div>
-
+                    <DeleteModal tipId={tip._id}/>
 
                 </div>
             </div>

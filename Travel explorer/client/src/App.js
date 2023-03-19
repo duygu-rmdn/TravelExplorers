@@ -19,27 +19,53 @@ import { Details } from './components/Details/Details';
 function App() {
     const navigate = useNavigate();
     const [tips, setTips] = useState([]);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         tipsService.getAll()
-        .then(result => setTips(result));
+            .then(result => setTips(result));
     }, []);
 
 
     const onTipAddSubmit = async (values) => {
-    const tip = await tipsService.create({values});
+        const tip = await tipsService.create({ values });
 
         navigate(`/tips/${tip._id}`);
         setTips(state => [...state, tip]);
     };
 
+    // const onDeleteClick = async (tipId) => {
+    //     const tip = await tipsService.remove(tipId);
+    //     setTips(state => state.filter(x => x._id !== tipId));
+    //     navigate('/tips');
+    // }
+
+    const onDeleteClick = () => {
+        setShowDeleteModal(true);
+    };
+    const onTipDeleteClose = () => {
+        setShowDeleteModal(false);
+    }
+
+    const onTipDeleteSumit = async (e, tipId) => {
+        e.preventDefault();
+
+        const tip = await tipsService.remove(tipId);
+        setTips(state => state.filter(x => x._id !== tipId));
+        
+        setShowDeleteModal(false);
+        navigate('/tips');
+    }
+
     const contextValue = {
         onTipAddSubmit,
         tips,
+        onDeleteClick,
+        onTipDeleteClose,
+        onTipDeleteSumit,
+        showDeleteModal
     };
 
-    
-    
     return (
         <TipContext.Provider value={contextValue}>
             <Header />
