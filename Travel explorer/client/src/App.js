@@ -29,7 +29,7 @@ function App() {
     const onTipAddSubmit = async (values) => {
     const tip = await tipsService.create({values});
 
-        navigate('/tips');
+        navigate(`/tips/${tip._id}`);
         setTips(state => [...state, tip]);
     };
 
