@@ -1,8 +1,8 @@
-import { CreateForm } from "./CreateForm/CreateForm";
-import { PhotoGrid } from "../PhotoGrid/PhotoGrid";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
+import { PhotoGrid } from "../PhotoGrid/PhotoGrid"
+import { EditForm } from "./EditForm/EditForm"
 
-export const Create = () => {
+export const Edit = () => {
     const tipId = useParams();
     return (
         <div className="container-xxl py-5">
@@ -17,10 +17,9 @@ export const Create = () => {
                 </div>
                 <div className="row g-5">
                     <PhotoGrid />
-                    <CreateForm />
+                    <EditForm tipId={tipId.tipId} />
                 </div>
             </div>
         </div>
-
-    );
-};
+    )
+}

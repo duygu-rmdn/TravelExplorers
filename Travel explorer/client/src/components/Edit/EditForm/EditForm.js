@@ -1,34 +1,40 @@
-import { useContext } from "react";
-import React, { useState, useMemo } from 'react';
-import { useForm } from '../../../hooks/useForm';
+import { useContext, useEffect, useState, useMemo } from "react";
 import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
+import * as tipServise from '../../../service/tipsService';
 import { TipContext } from "../../../contexts/tipContext";
 
-export const CreateForm = () => {
-    const { onTipAddSubmit } = useContext(TipContext);
+export const EditForm = ({ tipId }) => {
     const options = useMemo(() => countryList().getData(), []);
+    const { onTipUpdateSubmit } = useContext(TipContext);
+    const [formValues, setFormValues] = useState()
 
-    const { formValues, onChangeHandler, onSubmit } = useForm({
-        title: '',
-        category: '',
-        imageUrl: '',
-        description: '',
-        conclusion: '',
-        country: '',
-        maxPrice: '',
-        nights: '',
-    }, onTipAddSubmit);
+    useEffect(() => {
+        tipServise.getOne(tipId)
+            .then(result => {
+                result = result.values;
+                setFormValues(result);
+            });
+    }, [tipId]);
+
+    const onChangeHandler = (e) => {
+        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
+    };
+
+    const onUpdateTipClick = (e) => {
+        e.preventDefault();
+        onTipUpdateSubmit(formValues, tipId);
+    };
 
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onUpdateTipClick}>
                     <div className="row g-3">
                         <div className="col-md-12">
                             <div className="form-floating">
                                 <input
-                                    value={formValues.title}
+                                    value={formValues?.title || ''}
                                     onChange={onChangeHandler}
                                     name="title"
                                     type="text"
@@ -44,7 +50,7 @@ export const CreateForm = () => {
                                 <select className="form-select"
                                     id="category"
                                     name="category"
-                                    value={formValues.category}
+                                    value={formValues?.category || ''}
                                     onChange={onChangeHandler}>
 
                                     {categories.map((x) => (
@@ -61,7 +67,7 @@ export const CreateForm = () => {
                                 <select className="form-select"
                                     id="country"
                                     name="country"
-                                    value={formValues.country}
+                                    value={formValues?.country || ''}
                                     onChange={onChangeHandler}>
                                     {options.map((option, index) => (
                                         <option key={index} value={option.label}>
@@ -75,7 +81,7 @@ export const CreateForm = () => {
                         <div className="col-md-6">
                             <div className="form-floating">
                                 <input
-                                    value={formValues.nights}
+                                    value={formValues?.nights || ''}
                                     onChange={onChangeHandler}
                                     min="1"
                                     name="nights"
@@ -90,7 +96,7 @@ export const CreateForm = () => {
                         <div className="col-md-6">
                             <div className="form-floating">
                                 <input
-                                    value={formValues.maxPrice}
+                                    value={formValues?.maxPrice || ''}
                                     onChange={onChangeHandler}
                                     name="maxPrice"
                                     type="number"
@@ -108,7 +114,7 @@ export const CreateForm = () => {
                                 data-target-input="nearest"
                             >
                                 <input
-                                    value={formValues.imageUrl}
+                                    value={formValues?.imageUrl || ''}
                                     onChange={onChangeHandler}
                                     name="imageUrl"
                                     type="text"
@@ -127,7 +133,7 @@ export const CreateForm = () => {
                                     id="description"
                                     style={{ height: 200 }}
                                     name="description"
-                                    value={formValues.description}
+                                    value={formValues?.description || ''}
                                     onChange={onChangeHandler}
                                 />
                                 <label htmlFor="description">Description</label>
@@ -141,7 +147,7 @@ export const CreateForm = () => {
                                     id="conclusion"
                                     style={{ height: 90 }}
                                     name="conclusion"
-                                    value={formValues.conclusion}
+                                    value={formValues?.conclusion || ''}
                                     onChange={onChangeHandler}
                                 />
                                 <label htmlFor="conclusion">Conclusion</label>
@@ -149,7 +155,7 @@ export const CreateForm = () => {
                         </div>
                         <div className="col-12">
                             <button className="btn btn-primary w-100 py-3" type="submit" value="Create Tips">
-                                Share
+                                Update
                             </button>
                         </div>
                     </div>

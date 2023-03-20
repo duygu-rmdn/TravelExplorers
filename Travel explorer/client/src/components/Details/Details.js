@@ -7,6 +7,7 @@ import { DeleteModal } from './DeleteModal/DeleteModal';
 export const Details = () => {
     const { tipId } = useParams();
     const [tip, setTip] = useState({});
+    const [showEditUser, setShowEditTip] = useState(null);
     //const [reviews, setReviews] = useState('');
     const {onDeleteClick} = useContext(TipContext);
 
@@ -36,6 +37,9 @@ export const Details = () => {
 
                         <p>Max price: </p>
                         {tip?.values?.maxPrice && (<h3 className="mb-4">{tip.values.maxPrice} </h3>)}
+
+                        <p>Nights: </p>
+                        {tip?.values?.nights && (<h3 className="mb-4">{tip.values.nights} </h3>)}
                     </div>
                     <div className="col-lg-6">
                         <img
@@ -61,7 +65,11 @@ export const Details = () => {
                         <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
                             Back to tips
                         </Link> {" "}
-                        <button  className="btn btn-danger py-3 px-5 mt-2" onClick={onDeleteClick}>
+                        <Link to={`/edit/${tipId}`} className="btn btn-secondary py-3 px-5 mt-2">
+                            Update tip
+                        </Link >
+                        {" "}
+                        <button  className="btn btn-danger py-3 px-5 mt-2" onClick={() => onDeleteClick(tip._id)}>
                             Delete tip
                         </button >
                     </div>

@@ -15,6 +15,7 @@ import { Categories } from './components/Categories/Categories';
 import { Testimonial } from "./components/Testimonial/Testimonial";
 import { TipContext } from './contexts/tipContext';
 import { Details } from './components/Details/Details';
+import { Edit } from './components/Edit/Edit';
 
 function App() {
     const navigate = useNavigate();
@@ -37,9 +38,10 @@ function App() {
     const onDeleteClick = () => {
         setShowDeleteModal(true);
     };
+
     const onTipDeleteClose = () => {
         setShowDeleteModal(false);
-    }
+    };
 
     const onTipDeleteSumit = async (e, tipId) => {
         e.preventDefault();
@@ -49,7 +51,15 @@ function App() {
 
         setShowDeleteModal(false);
         navigate('/tips');
-    }
+    };
+
+    const onTipUpdateSubmit = async (formValues, tipId) => {
+        const updatedTip = await tipsService.update(tipId, formValues);
+        setTips(state => state.map(x => x._id === tipId ? updatedTip : x));
+
+        navigate(`/tips/${tipId}`);
+    };
+
 
     const contextValue = {
         onTipAddSubmit,
@@ -57,7 +67,8 @@ function App() {
         onDeleteClick,
         onTipDeleteClose,
         onTipDeleteSumit,
-        showDeleteModal
+        showDeleteModal,
+        onTipUpdateSubmit
     };
 
     return (
@@ -71,6 +82,7 @@ function App() {
                     <Route path='/tips' element={<TipList />} />
                     <Route path='/categories' element={<Categories />} />
                     <Route path='/create' element={<Create />} />
+                    <Route path='/edit/:tipId' element={<Edit />} />
                     <Route path='/tips/:tipId' element={<Details />} />
                 </Routes>
             </div>

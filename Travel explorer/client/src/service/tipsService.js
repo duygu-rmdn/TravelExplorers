@@ -22,3 +22,12 @@ export const remove = async (tipId) => {
     const result = await request.del(`${baseUrl}/${tipId}`);
     return result;
 };
+
+export const update = async(tipId, tipData) => {  
+    const tip = {
+        _id: tipId,
+        values: tipData
+    };
+    const result = await request.put(`${baseUrl}/${tipId}`, tip);
+    return result;
+}
