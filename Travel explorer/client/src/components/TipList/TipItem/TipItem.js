@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { categories } from "../../../constants";
 
 export const TipItem = ({
     _id,

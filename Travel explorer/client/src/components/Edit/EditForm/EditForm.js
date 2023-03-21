@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState, useMemo } from "react";
 import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
-import * as tipServise from '../../../service/tipsService';
+import {tipServiceFactory} from '../../../services/tipService';
 import { TipContext } from "../../../contexts/tipContext";
 import { useForm } from "../../../hooks/useForm";
+import {useService} from "../../../hooks/useService";
 
 export const EditForm = ({ tipId }) => {
+    const tipService = useService(tipServiceFactory);
     const options = useMemo(() => countryList().getData(), []);
     const { onTipUpdateSubmit } = useContext(TipContext);
     const { values, changeHandler, onSubmit, changeValues } = useForm({
@@ -22,7 +24,7 @@ export const EditForm = ({ tipId }) => {
 
 
     useEffect(() => {
-        tipServise.getOne(tipId)
+        tipService.getOne(tipId)
             .then(result => {
                 changeValues(result);
             });

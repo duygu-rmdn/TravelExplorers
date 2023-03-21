@@ -1,7 +1,7 @@
-import { requestFactory } from './Oldrequester';
+import { requestFactory } from "./requester";
 import { baseUrl } from "../constants";
 
-export const tipServiseFactory = (token) => {
+export const tipServiceFactory = (token) => {
     const request = requestFactory(token);
 
     const getAll = async () => {
@@ -17,17 +17,24 @@ export const tipServiseFactory = (token) => {
     };
 
     const create = async (tipData) => {
+        if (tipData.category === '') {
+            tipData.category = 'Sea'
+        }
+
+        if (tipData.country === '') {
+            tipData.country = 'Afghanistan';
+        }
         const result = await request.post(baseUrl, tipData);
         return result;
     };
 
     const remove = async (tipId) => {
-        const result = await request.del(`${baseUrl}/${tipId}`);
+        const result = await request.delete(`${baseUrl}/${tipId}`);
         return result;
     };
 
-    const update = async (tipId, tip) => {
-        const result = await request.put(`${baseUrl}/${tipId}`, tip);
+    const update = async (tipId, tipData) => {
+        const result = await request.put(`${baseUrl}/${tipId}`, tipData);
         return result;
     }
 
@@ -35,8 +42,7 @@ export const tipServiseFactory = (token) => {
         getAll,
         getOne,
         create,
+        update,
         remove,
-        update
     };
-};
-
+} 

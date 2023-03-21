@@ -1,17 +1,19 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TipContext } from '../../contexts/tipContext';
-import * as tipServise from '../../service/tipsService';
+import {tipServiceFactory} from '../../services/tipService';
 import { DeleteModal } from './DeleteModal/DeleteModal';
+import { useService } from '../../hooks/useService';
 
 export const Details = () => {
     const { tipId } = useParams();
     const [tip, setTip] = useState({});
     //const [reviews, setReviews] = useState('');
     const { onDeleteClick } = useContext(TipContext);
+    const tipService = useService(tipServiceFactory);
 
     useEffect(() => {
-        tipServise.getOne(tipId)
+        tipService.getOne(tipId)
             .then(result => {
                 setTip(result);
             });
