@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { categories } from "../../../constants";
 
 export const TipItem = ({
-    id,
+    _id,
     category,
     title,
     conclusion,
@@ -30,7 +30,7 @@ export const TipItem = ({
                         {conclusion}
                     </p>
                     <div className="d-flex justify-content-between">
-                        <Link to={`/tips/${id}`} className="btn btn-sm btn-dark rounded py-2 px-4">
+                        <Link to={`/tips/${_id}`} className="btn btn-sm btn-dark rounded py-2 px-4">
                             View Detail
                         </Link>
                     </div>

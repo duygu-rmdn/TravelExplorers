@@ -3,39 +3,42 @@ import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
 import * as tipServise from '../../../service/tipsService';
 import { TipContext } from "../../../contexts/tipContext";
+import { useForm } from "../../../hooks/useForm";
 
 export const EditForm = ({ tipId }) => {
     const options = useMemo(() => countryList().getData(), []);
     const { onTipUpdateSubmit } = useContext(TipContext);
-    const [formValues, setFormValues] = useState()
+    const { values, changeHandler, onSubmit, changeValues } = useForm({
+        _id: '',
+        title: '',
+        category: '',
+        imageUrl: '',
+        description: '',
+        conclusion: '',
+        country: '',
+        maxPrice: '',
+        nights: '',
+    }, onTipUpdateSubmit);
+
 
     useEffect(() => {
         tipServise.getOne(tipId)
             .then(result => {
-                result = result.values;
-                setFormValues(result);
+                changeValues(result);
             });
     }, [tipId]);
 
-    const onChangeHandler = (e) => {
-        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
-    };
-
-    const onUpdateTipClick = (e) => {
-        e.preventDefault();
-        onTipUpdateSubmit(formValues, tipId);
-    };
 
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">
-                <form onSubmit={onUpdateTipClick}>
+                <form onSubmit={onSubmit}>
                     <div className="row g-3">
                         <div className="col-md-12">
                             <div className="form-floating">
                                 <input
-                                    value={formValues?.title || ''}
-                                    onChange={onChangeHandler}
+                                    value={values.title}
+                                    onChange={changeHandler}
                                     name="title"
                                     type="text"
                                     className="form-control"
@@ -50,8 +53,8 @@ export const EditForm = ({ tipId }) => {
                                 <select className="form-select"
                                     id="category"
                                     name="category"
-                                    value={formValues?.category || ''}
-                                    onChange={onChangeHandler}>
+                                    value={values.category}
+                                    onChange={changeHandler}>
 
                                     {categories.map((x) => (
                                         <option key={x.id} value={x.name}>
@@ -67,8 +70,8 @@ export const EditForm = ({ tipId }) => {
                                 <select className="form-select"
                                     id="country"
                                     name="country"
-                                    value={formValues?.country || ''}
-                                    onChange={onChangeHandler}>
+                                    value={values.country}
+                                    onChange={changeHandler}>
                                     {options.map((option, index) => (
                                         <option key={index} value={option.label}>
                                             {option.label}
@@ -81,8 +84,8 @@ export const EditForm = ({ tipId }) => {
                         <div className="col-md-6">
                             <div className="form-floating">
                                 <input
-                                    value={formValues?.nights || ''}
-                                    onChange={onChangeHandler}
+                                    value={values.nights}
+                                    onChange={changeHandler}
                                     min="1"
                                     name="nights"
                                     type="number"
@@ -96,8 +99,8 @@ export const EditForm = ({ tipId }) => {
                         <div className="col-md-6">
                             <div className="form-floating">
                                 <input
-                                    value={formValues?.maxPrice || ''}
-                                    onChange={onChangeHandler}
+                                    value={values.maxPrice}
+                                    onChange={changeHandler}
                                     name="maxPrice"
                                     type="number"
                                     className="form-control"
@@ -114,8 +117,8 @@ export const EditForm = ({ tipId }) => {
                                 data-target-input="nearest"
                             >
                                 <input
-                                    value={formValues?.imageUrl || ''}
-                                    onChange={onChangeHandler}
+                                    value={values.imageUrl}
+                                    onChange={changeHandler}
                                     name="imageUrl"
                                     type="text"
                                     className="form-control datetimepicker-input"
@@ -133,8 +136,8 @@ export const EditForm = ({ tipId }) => {
                                     id="description"
                                     style={{ height: 200 }}
                                     name="description"
-                                    value={formValues?.description || ''}
-                                    onChange={onChangeHandler}
+                                    value={values.description}
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="description">Description</label>
                             </div>
@@ -147,8 +150,8 @@ export const EditForm = ({ tipId }) => {
                                     id="conclusion"
                                     style={{ height: 90 }}
                                     name="conclusion"
-                                    value={formValues?.conclusion || ''}
-                                    onChange={onChangeHandler}
+                                    value={values.conclusion}
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="conclusion">Conclusion</label>
                             </div>

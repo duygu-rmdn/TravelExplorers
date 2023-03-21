@@ -3,7 +3,8 @@ import { PhotoGrid } from "../PhotoGrid/PhotoGrid"
 import { EditForm } from "./EditForm/EditForm"
 
 export const Edit = () => {
-    const tipId = useParams();
+    const {tipId} = useParams();
+
     return (
         <div className="container-xxl py-5">
             <div className="container">
@@ -17,7 +18,7 @@ export const Edit = () => {
                 </div>
                 <div className="row g-5">
                     <PhotoGrid />
-                    <EditForm tipId={tipId.tipId} />
+                    <EditForm tipId={tipId} />
                 </div>
             </div>
         </div>

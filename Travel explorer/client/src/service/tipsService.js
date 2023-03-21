@@ -1,6 +1,7 @@
 import * as request  from "./requester";
 import { baseUrl } from "../constants";
 
+
 export const getAll = async () => {
     const result = await request.get(baseUrl);
     const tips = Object.values(result);
@@ -14,6 +15,13 @@ export const getOne = async (tipId) => {
 };
 
 export const create = async (tipData) => {
+    if (tipData.category == '') {
+        tipData.category = 'Sea'
+    }
+
+    if (tipData.country == '') {
+        tipData.country = 'Afghanistan';
+    }
     const result = await request.post(baseUrl, tipData);
     return result;
 };
@@ -24,10 +32,6 @@ export const remove = async (tipId) => {
 };
 
 export const update = async(tipId, tipData) => {  
-    const tip = {
-        _id: tipId,
-        values: tipData
-    };
-    const result = await request.put(`${baseUrl}/${tipId}`, tip);
+    const result = await request.put(`${baseUrl}/${tipId}`, tipData);
     return result;
 }

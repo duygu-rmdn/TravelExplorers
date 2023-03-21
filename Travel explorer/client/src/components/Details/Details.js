@@ -7,9 +7,8 @@ import { DeleteModal } from './DeleteModal/DeleteModal';
 export const Details = () => {
     const { tipId } = useParams();
     const [tip, setTip] = useState({});
-    const [showEditUser, setShowEditTip] = useState(null);
     //const [reviews, setReviews] = useState('');
-    const {onDeleteClick} = useContext(TipContext);
+    const { onDeleteClick } = useContext(TipContext);
 
     useEffect(() => {
         tipServise.getOne(tipId)
@@ -27,25 +26,25 @@ export const Details = () => {
                             Details
                         </h6>
 
-                        {tip?.values?.title && (<h1 className="mb-4">{tip.values.title} </h1>)}
+                        <h1 className="mb-4">{tip.title} </h1>
 
                         <p>Category: </p>
-                        {tip?.values?.category && (<h3 className="mb-4">{tip.values.category} </h3>)}
+                        <h3 className="mb-4">{tip.category} </h3>
 
                         <p>Country: </p>
-                        {tip?.values?.country && (<h3 className="mb-4">{tip.values.country} </h3>)}
+                        <h3 className="mb-4">{tip.country} </h3>
 
                         <p>Max price: </p>
-                        {tip?.values?.maxPrice && (<h3 className="mb-4">{tip.values.maxPrice} </h3>)}
+                        <h3 className="mb-4">{tip.maxPrice} </h3>
 
                         <p>Nights: </p>
-                        {tip?.values?.nights && (<h3 className="mb-4">{tip.values.nights} </h3>)}
+                        <h3 className="mb-4">{tip.nights} </h3>
                     </div>
                     <div className="col-lg-6">
                         <img
                             className="img-fluid rounded w-75 wow zoomIn"
                             data-wow-delay="0.7s"
-                            src={tip?.values?.imageUrl && tip.values.imageUrl}
+                            src={tip.imageUrl && tip.imageUrl}
                         />
 
                     </div>
@@ -55,13 +54,13 @@ export const Details = () => {
                             <div className="col-sm-12 wow fadeIn" data-wow-delay="0.1s">
                                 <div className="border rounded p-1">
                                     <div className="border rounded  p-4">
-                                        {tip?.values?.description && (<p className="mb-0">{tip.values.description}</p>)}
+                                        <p className="mb-0">{tip.description}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <p>Conclusion: </p>
-                        {tip?.values?.conclusion && (<h6 className="mb-4">{tip.values.conclusion} </h6>)}
+                        <h6 className="mb-4">{tip.conclusion} </h6>
                         <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
                             Back to tips
                         </Link> {" "}
@@ -69,11 +68,11 @@ export const Details = () => {
                             Update tip
                         </Link >
                         {" "}
-                        <button  className="btn btn-danger py-3 px-5 mt-2" onClick={() => onDeleteClick(tip._id)}>
+                        <button className="btn btn-danger py-3 px-5 mt-2" onClick={() => onDeleteClick(tip._id)}>
                             Delete tip
                         </button >
                     </div>
-                    <DeleteModal tipId={tip._id}/>
+                    <DeleteModal tipId={tipId} />
 
                 </div>
             </div>

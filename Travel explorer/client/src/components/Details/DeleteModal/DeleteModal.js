@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useContext } from "react";
 import { TipContext } from "../../../contexts/tipContext";
 
-export const DeleteModal = ({tipId}) => {
+export const DeleteModal = ({ tipId }) => {
     const { onTipDeleteClose,
         onTipDeleteSumit,
         showDeleteModal } = useContext(TipContext);

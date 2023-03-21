@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import React, { useState, useMemo } from 'react';
+import { useContext, useMemo} from 'react';
 import { useForm } from '../../../hooks/useForm';
 import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
@@ -9,7 +8,7 @@ export const CreateForm = () => {
     const { onTipAddSubmit } = useContext(TipContext);
     const options = useMemo(() => countryList().getData(), []);
 
-    const { formValues, onChangeHandler, onSubmit } = useForm({
+    const { values, changeHandler, onSubmit } = useForm({
         title: '',
         category: '',
         imageUrl: '',
@@ -28,8 +27,8 @@ export const CreateForm = () => {
                         <div className="col-md-12">
                             <div className="form-floating">
                                 <input
-                                    value={formValues.title}
-                                    onChange={onChangeHandler}
+                                    value={values.title}
+                                    onChange={changeHandler}
                                     name="title"
                                     type="text"
                                     className="form-control"
@@ -44,8 +43,8 @@ export const CreateForm = () => {
                                 <select className="form-select"
                                     id="category"
                                     name="category"
-                                    value={formValues.category}
-                                    onChange={onChangeHandler}>
+                                    value={values.category}
+                                    onChange={changeHandler}>
 
                                     {categories.map((x) => (
                                         <option key={x.id} value={x.name}>
@@ -61,8 +60,8 @@ export const CreateForm = () => {
                                 <select className="form-select"
                                     id="country"
                                     name="country"
-                                    value={formValues.country}
-                                    onChange={onChangeHandler}>
+                                    value={values.country}
+                                    onChange={changeHandler}>
                                     {options.map((option, index) => (
                                         <option key={index} value={option.label}>
                                             {option.label}
@@ -75,8 +74,8 @@ export const CreateForm = () => {
                         <div className="col-md-6">
                             <div className="form-floating">
                                 <input
-                                    value={formValues.nights}
-                                    onChange={onChangeHandler}
+                                    value={values.nights}
+                                    onChange={changeHandler}
                                     min="1"
                                     name="nights"
                                     type="number"
@@ -90,8 +89,8 @@ export const CreateForm = () => {
                         <div className="col-md-6">
                             <div className="form-floating">
                                 <input
-                                    value={formValues.maxPrice}
-                                    onChange={onChangeHandler}
+                                    value={values.maxPrice}
+                                    onChange={changeHandler}
                                     name="maxPrice"
                                     type="number"
                                     className="form-control"
@@ -108,8 +107,8 @@ export const CreateForm = () => {
                                 data-target-input="nearest"
                             >
                                 <input
-                                    value={formValues.imageUrl}
-                                    onChange={onChangeHandler}
+                                    value={values.imageUrl}
+                                    onChange={changeHandler}
                                     name="imageUrl"
                                     type="text"
                                     className="form-control datetimepicker-input"
@@ -127,8 +126,8 @@ export const CreateForm = () => {
                                     id="description"
                                     style={{ height: 200 }}
                                     name="description"
-                                    value={formValues.description}
-                                    onChange={onChangeHandler}
+                                    value={values.description}
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="description">Description</label>
                             </div>
@@ -141,8 +140,8 @@ export const CreateForm = () => {
                                     id="conclusion"
                                     style={{ height: 90 }}
                                     name="conclusion"
-                                    value={formValues.conclusion}
-                                    onChange={onChangeHandler}
+                                    value={values.conclusion}
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="conclusion">Conclusion</label>
                             </div>

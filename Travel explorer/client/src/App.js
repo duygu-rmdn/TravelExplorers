@@ -7,7 +7,7 @@ import { Up } from "./components/Up/Up";
 import { Home } from "./components/Home/Home";
 import { About } from './components/About/About';
 import { Header } from "./components/Header/Header";
-import { Spiner } from "./components/Spiner/Spiner";
+// import { Spiner } from "./components/Spiner/Spiner";
 import { Create } from './components/Create/Create';
 import { Footer } from './components/Footer/Footer';
 import { TipList } from './components/TipList/TipList';
@@ -29,10 +29,11 @@ function App() {
 
 
     const onTipAddSubmit = async (values) => {
-        const tip = await tipsService.create({ values });
+        const tip = await tipsService.create(values);
+
+        setTips(state => [...state, tip]);
 
         navigate(`/tips/${tip._id}`);
-        setTips(state => [...state, tip]);
     };
 
     const onDeleteClick = () => {
@@ -53,11 +54,11 @@ function App() {
         navigate('/tips');
     };
 
-    const onTipUpdateSubmit = async (formValues, tipId) => {
-        const updatedTip = await tipsService.update(tipId, formValues);
-        setTips(state => state.map(x => x._id === tipId ? updatedTip : x));
+    const onTipUpdateSubmit = async (values) => {
+        const updatedTip = await tipsService.update(values._id, values);
+        setTips(state => state.map(x => x._id === values._id ? updatedTip : x));
 
-        navigate(`/tips/${tipId}`);
+        navigate(`/tips/${values._id}`);
     };
 
 

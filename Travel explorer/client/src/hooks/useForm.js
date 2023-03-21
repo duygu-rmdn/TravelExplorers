@@ -1,19 +1,28 @@
-import { useState } from "react"
+import { useState } from 'react';
 
-export const useForm = (initilaValues, onSubmitHandler) => {
-    const [formValues, setFormValues] = useState(initilaValues);
+export const useForm = (initialValues, onSubmitHandler) => {
+    const [values, setValues] = useState(initialValues);
 
-    const onChangeHandler = (e) => {
-        setFormValues(state => ({...state, [e.target.name]: e.target.value}));
+    const changeHandler = (e) => {
+        setValues(state => ({...state, [e.target.name]: e.target.value}));
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        if (onSubmitHandler) {
-            onSubmitHandler(formValues);
-        }
+        onSubmitHandler(values);
     };
 
-    return {formValues, onChangeHandler, onSubmit};
+    const changeValues = (newValues) => {
+        // TODO: Validate newValues shape (like initialValues)
+        
+        setValues(newValues);
+    };
+
+    return {
+        values,
+        changeHandler,
+        onSubmit,
+        changeValues,
+    };
 };
