@@ -1,4 +1,4 @@
-export const baseUrl = 'http://localhost:3030/jsonstore/tips';
+export const baseUrl = 'http://localhost:3030/data/tips';
 
 export const categories = [
     {

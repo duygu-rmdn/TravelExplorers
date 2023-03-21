@@ -1,16 +1,22 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 
-import { useForm } from "../../../hooks/useForm";
-import { AuthContext } from "../../../contexts/authContext";
+import { useForm } from '../../../hooks/useForm';
+import { NotFound } from '../../NoFound/NotFound';
+import { AuthContext } from '../../../contexts/authContext';
 
 export const RegisterForm = () => {
-    const { onRegisterSubmit } = useContext(AuthContext);
+    const { onRegisterSubmit, isAuthenticated } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm({
         email: '',
         username: '',
         password: '',
         confirmPassword: '',
     }, onRegisterSubmit);
+
+    if(isAuthenticated){
+        return <NotFound />
+    }
+    
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">

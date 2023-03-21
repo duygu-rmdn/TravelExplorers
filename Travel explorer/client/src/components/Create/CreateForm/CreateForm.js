@@ -1,10 +1,13 @@
-import { useContext, useMemo} from 'react';
+import { useContext, useMemo } from 'react';
 import { useForm } from '../../../hooks/useForm';
-import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
-import { TipContext } from "../../../contexts/tipContext";
+
+import { categories } from '../../../constants';
+import { TipContext } from '../../../contexts/tipContext';
+import { AuthContext } from '../../../contexts/authContext';
 
 export const CreateForm = () => {
+    const { userId } = useContext(AuthContext);
     const { onTipAddSubmit } = useContext(TipContext);
     const options = useMemo(() => countryList().getData(), []);
 
@@ -17,6 +20,7 @@ export const CreateForm = () => {
         country: '',
         maxPrice: '',
         nights: '',
+        ownerId: userId
     }, onTipAddSubmit);
 
     return (

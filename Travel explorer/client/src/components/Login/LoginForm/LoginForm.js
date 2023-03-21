@@ -1,14 +1,21 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 
-import { useForm } from "../../../hooks/useForm";
-import { AuthContext } from "../../../contexts/authContext";
+import { useForm } from '../../../hooks/useForm';
+import { NotFound } from '../../NoFound/NotFound';
+import { AuthContext } from '../../../contexts/authContext';
 
 export const LoginForm = () => {
-    const { onLoginSubmit } = useContext(AuthContext);
+    const { onLoginSubmit, isAuthenticated } = useContext(AuthContext);
+    
     const { values, changeHandler, onSubmit } = useForm({
         email: '',
         password: '',
     }, onLoginSubmit);
+
+    if(isAuthenticated){
+        return <NotFound />
+    }
+    
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">

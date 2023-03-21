@@ -1,16 +1,20 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { TipContext } from '../../contexts/tipContext';
-import {tipServiceFactory} from '../../services/tipService';
+import { tipServiceFactory } from '../../services/tipService';
 import { DeleteModal } from './DeleteModal/DeleteModal';
 import { useService } from '../../hooks/useService';
+import { AuthContext } from '../../contexts/authContext';
 
 export const Details = () => {
     const { tipId } = useParams();
     const [tip, setTip] = useState({});
     //const [reviews, setReviews] = useState('');
     const { onDeleteClick } = useContext(TipContext);
+    const { isAuthenticated, userId } = useContext(AuthContext);
     const tipService = useService(tipServiceFactory);
+
+    const isOwner = userId == tip.ownerId;
 
     useEffect(() => {
         tipService.getOne(tipId)
@@ -66,13 +70,16 @@ export const Details = () => {
                         <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
                             Back to tips
                         </Link> {" "}
-                        <Link to={`/edit/${tipId}`} className="btn btn-secondary py-3 px-5 mt-2">
-                            Update tip
-                        </Link >
-                        {" "}
-                        <button className="btn btn-danger py-3 px-5 mt-2" onClick={() => onDeleteClick(tip._id)}>
-                            Delete tip
-                        </button >
+                        {isAuthenticated && isOwner && <>
+                            <Link to={`/edit/${tipId}`} className="btn btn-secondary py-3 px-5 mt-2">
+                                Update tip
+                            </Link >
+                            {" "}
+                            <button className="btn btn-danger py-3 px-5 mt-2" onClick={() => onDeleteClick(tip._id)}>
+                                Delete tip
+                            </button >
+                        </>
+                        }
                     </div>
                     <DeleteModal tipId={tipId} />
 

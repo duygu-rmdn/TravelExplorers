@@ -19,7 +19,7 @@ export const Carousel = () => {
                                 <h1 className="display-3 text-white mb-4 animated slideInDown">
                                     Discover A Smarter Way To Travel
                                 </h1>
-                               <Link to={'/tips'}
+                                <Link to={'/tips'}
                                     className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
                                 >
                                     tips

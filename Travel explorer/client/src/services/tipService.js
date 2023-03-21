@@ -1,5 +1,5 @@
-import { requestFactory } from "./requester";
-import { baseUrl } from "../constants";
+import { baseUrl } from '../constants';
+import { requestFactory } from './requester';
 
 export const tipServiceFactory = (token) => {
     const request = requestFactory(token);

@@ -1,15 +1,21 @@
-import { useContext, useEffect, useState, useMemo } from "react";
-import { categories } from "../../../constants";
 import countryList from 'react-select-country-list';
-import {tipServiceFactory} from '../../../services/tipService';
-import { TipContext } from "../../../contexts/tipContext";
-import { useForm } from "../../../hooks/useForm";
-import {useService} from "../../../hooks/useService";
+import { useContext, useEffect, useMemo } from 'react';
+
+import { categories } from '../../../constants';
+import { useForm } from '../../../hooks/useForm';
+import { useService } from '../../../hooks/useService';
+
+import { TipContext } from '../../../contexts/tipContext';
+import { AuthContext } from '../../../contexts/authContext';
+import { tipServiceFactory } from '../../../services/tipService';
+import { NotFound } from '../../NoFound/NotFound';
+import { Navigate } from 'react-router-dom';
 
 export const EditForm = ({ tipId }) => {
     const tipService = useService(tipServiceFactory);
     const options = useMemo(() => countryList().getData(), []);
     const { onTipUpdateSubmit } = useContext(TipContext);
+
     const { values, changeHandler, onSubmit, changeValues } = useForm({
         _id: '',
         title: '',
@@ -20,8 +26,8 @@ export const EditForm = ({ tipId }) => {
         country: '',
         maxPrice: '',
         nights: '',
+        ownerId: '',
     }, onTipUpdateSubmit);
-
 
     useEffect(() => {
         tipService.getOne(tipId)
@@ -29,7 +35,6 @@ export const EditForm = ({ tipId }) => {
                 changeValues(result);
             });
     }, [tipId]);
-
 
     return (
         <div className="col-lg-6">

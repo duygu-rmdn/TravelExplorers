@@ -4,23 +4,24 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { tipServiceFactory } from './services/tipService';
 import { authServiceFactory } from './services/authService';
 
-import { Up } from "./components/Up/Up";
-import { Home } from "./components/Home/Home";
+import { Up } from './components/Up/Up';
+import { Edit } from './components/Edit/Edit';
+import { Home } from './components/Home/Home';
+import { Login } from './components/Login/Login';
 import { About } from './components/About/About';
-import { Header } from "./components/Header/Header";
-// import { Spiner } from "./components/Spiner/Spiner";
+import { TipContext } from './contexts/tipContext';
+import { Header } from './components/Header/Header';
+import { Logout } from './components/Logout/Logout';
+import { AuthContext } from './contexts/authContext';
 import { Create } from './components/Create/Create';
 import { Footer } from './components/Footer/Footer';
-import { TipList } from './components/TipList/TipList';
-import { Categories } from './components/Categories/Categories';
-import { Testimonial } from "./components/Testimonial/Testimonial";
-import { TipContext } from './contexts/tipContext';
 import { Details } from './components/Details/Details';
-import { Edit } from './components/Edit/Edit';
-import { Login } from './components/Login/Login';
-import { AuthContext } from './contexts/authContext';
+// import { Spiner } from './components/Spiner/Spiner';
+import { TipList } from './components/TipList/TipList';
 import { Register } from './components/Register/Register';
-import { Logout } from './components/Logout/Logout';
+import { Categories } from './components/Categories/Categories';
+import { Testimonial } from './components/Testimonial/Testimonial';
+import { NotFound } from './components/NoFound/NotFound';
 
 function App() {
     const navigate = useNavigate();
@@ -100,25 +101,22 @@ function App() {
     };
 
     const onLogout = async () => {
-        await authService.logout();
+        if (!!auth.accessToken) {
+            await authService.logout();
 
-        setAuth({});
+            setAuth({});
+        }
     };
 
 
     const contextValue = {
         tips,
-        onTipAddSubmit,
+        showDeleteModal,
         onDeleteClick,
+        onTipAddSubmit,
         onTipDeleteClose,
         onTipDeleteSumit,
-        onLoginSubmit,
-        showDeleteModal,
         onTipUpdateSubmit,
-        userId: auth._id,
-        token: auth.accessToken,
-        userEmail: auth.email,
-        isAuthenticated: !!auth.accessToken,
     };
 
     const authContextValue = {
@@ -127,7 +125,7 @@ function App() {
         onRegisterSubmit,
         userId: auth._id,
         token: auth.accessToken,
-        userEmail: auth.email,
+        username: auth.username,
         isAuthenticated: !!auth.accessToken,
     };
 
@@ -148,6 +146,7 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/logout' element={<Logout />} />
+                        <Route path='*' element={<NotFound />} />
                     </Routes>
                 </div>
                 <Testimonial />

@@ -1,9 +1,17 @@
-import { CreateForm } from "./CreateForm/CreateForm";
-import { PhotoGrid } from "../PhotoGrid/PhotoGrid";
-import { useParams } from "react-router-dom";
+import { useContext } from 'react';
+
+import { NotFound } from '../NoFound/NotFound';
+import { PhotoGrid } from '../PhotoGrid/PhotoGrid';
+import { CreateForm } from './CreateForm/CreateForm';
+import { AuthContext } from '../../contexts/authContext';
 
 export const Create = () => {
-    const tipId = useParams();
+    const { isAuthenticated } = useContext(AuthContext);
+    
+    if (!isAuthenticated) {
+        return <NotFound />
+    }
+
     return (
         <div className="container-xxl py-5">
             <div className="container">

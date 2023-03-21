@@ -1,5 +1,5 @@
-import { PhotoGrid } from "../PhotoGrid/PhotoGrid";
-import { RegisterForm } from "./RegisterForm/RegisterForm";
+import { PhotoGrid } from '../PhotoGrid/PhotoGrid';
+import { RegisterForm } from './RegisterForm/RegisterForm';
 
 export const Register = () => {
     return (
