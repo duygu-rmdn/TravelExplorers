@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { tipServiceFactory } from './services/tipService';
-import { authServiceFactory } from './services/authService';
+import { AuthProvider } from './contexts/AuthContext';
 
 import { Up } from './components/Up/Up';
 import { Edit } from './components/Edit/Edit';
@@ -12,7 +12,6 @@ import { About } from './components/About/About';
 import { TipContext } from './contexts/tipContext';
 import { Header } from './components/Header/Header';
 import { Logout } from './components/Logout/Logout';
-import { AuthContext } from './contexts/authContext';
 import { Create } from './components/Create/Create';
 import { Footer } from './components/Footer/Footer';
 import { Details } from './components/Details/Details';
@@ -25,11 +24,9 @@ import { NotFound } from './components/NoFound/NotFound';
 
 function App() {
     const navigate = useNavigate();
-    const [auth, setAuth] = useState({});
     const [tips, setTips] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const tipService = tipServiceFactory(auth.accessToken);
-    const authService = authServiceFactory(auth.accessToken)
+    const tipService = tipServiceFactory(); //auth.accessToken
 
 
     useEffect(() => {
@@ -71,43 +68,7 @@ function App() {
         navigate(`/tips/${values._id}`);
     };
 
-    const onLoginSubmit = async (data) => {
-        try {
-            const result = await authService.login(data);
-
-            setAuth(result);
-
-            navigate('/tips');
-        } catch (error) {
-            console.log('There is a problem');
-        }
-    };
-
-    const onRegisterSubmit = async (values) => {
-        const { confirmPassword, ...registerData } = values;
-        if (confirmPassword !== registerData.password) {
-            return;
-        }
-
-        try {
-            const result = await authService.register(registerData);
-
-            setAuth(result);
-
-            navigate('/tips');
-        } catch (error) {
-            console.log('There is a problem');
-        }
-    };
-
-    const onLogout = async () => {
-        if (!!auth.accessToken) {
-            await authService.logout();
-
-            setAuth({});
-        }
-    };
-
+    
 
     const contextValue = {
         tips,
@@ -119,19 +80,11 @@ function App() {
         onTipUpdateSubmit,
     };
 
-    const authContextValue = {
-        onLogout,
-        onLoginSubmit,
-        onRegisterSubmit,
-        userId: auth._id,
-        token: auth.accessToken,
-        username: auth.username,
-        isAuthenticated: !!auth.accessToken,
-    };
+    
 
     return (
         <TipContext.Provider value={contextValue}>
-            <AuthContext.Provider value={authContextValue}>
+            <AuthProvider>
                 <Header />
                 <div className="container-xxl bg-white p-0">
                     {/* <Spiner /> */}
@@ -152,7 +105,7 @@ function App() {
                 <Testimonial />
                 <Footer />
                 <Up />
-            </AuthContext.Provider>
+            </AuthProvider>
         </TipContext.Provider>
     );
 };

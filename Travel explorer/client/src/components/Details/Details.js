@@ -4,7 +4,7 @@ import { TipContext } from '../../contexts/tipContext';
 import { tipServiceFactory } from '../../services/tipService';
 import { DeleteModal } from './DeleteModal/DeleteModal';
 import { useService } from '../../hooks/useService';
-import { AuthContext } from '../../contexts/authContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export const Details = () => {
     const { tipId } = useParams();

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { useForm } from '../../../hooks/useForm';
 import { NotFound } from '../../NoFound/NotFound';
-import { AuthContext } from '../../../contexts/authContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export const RegisterForm = () => {
     const { onRegisterSubmit, isAuthenticated } = useContext(AuthContext);

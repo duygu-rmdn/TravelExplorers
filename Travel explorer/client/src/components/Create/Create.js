@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { NotFound } from '../NoFound/NotFound';
 import { PhotoGrid } from '../PhotoGrid/PhotoGrid';
 import { CreateForm } from './CreateForm/CreateForm';
-import { AuthContext } from '../../contexts/authContext';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export const Create = () => {
     const { isAuthenticated } = useContext(AuthContext);

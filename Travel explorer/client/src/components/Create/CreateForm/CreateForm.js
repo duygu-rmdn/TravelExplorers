@@ -4,7 +4,7 @@ import countryList from 'react-select-country-list';
 
 import { categories } from '../../../constants';
 import { TipContext } from '../../../contexts/tipContext';
-import { AuthContext } from '../../../contexts/authContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 export const CreateForm = () => {
     const { userId } = useContext(AuthContext);

@@ -6,7 +6,7 @@ import { useForm } from '../../../hooks/useForm';
 import { useService } from '../../../hooks/useService';
 
 import { TipContext } from '../../../contexts/tipContext';
-import { AuthContext } from '../../../contexts/authContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 import { tipServiceFactory } from '../../../services/tipService';
 import { NotFound } from '../../NoFound/NotFound';
 import { Navigate } from 'react-router-dom';
