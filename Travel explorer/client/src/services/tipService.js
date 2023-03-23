@@ -3,11 +3,11 @@ import { requestFactory } from './requester';
 
 export const tipServiceFactory = (token) => {
     const request = requestFactory(token);
-
+ 
     const getAll = async () => {
         const result = await request.get(baseUrl);
         const tips = Object.values(result);
-
+        
         return tips;
     };
 

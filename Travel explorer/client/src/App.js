@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
-import { tipServiceFactory } from './services/tipService';
+import { useService } from './hooks/useService';
 import { AuthProvider } from './contexts/AuthContext';
+import { tipServiceFactory } from './services/tipService';
 
 import { Up } from './components/Up/Up';
 import { Edit } from './components/Edit/Edit';
@@ -68,7 +69,7 @@ function App() {
         navigate(`/tips/${values._id}`);
     };
 
-    
+
 
     const contextValue = {
         tips,
@@ -80,11 +81,11 @@ function App() {
         onTipUpdateSubmit,
     };
 
-    
+
 
     return (
-        <TipContext.Provider value={contextValue}>
-            <AuthProvider>
+        <AuthProvider>
+            <TipContext.Provider value={contextValue}>
                 <Header />
                 <div className="container-xxl bg-white p-0">
                     {/* <Spiner /> */}
@@ -105,8 +106,8 @@ function App() {
                 <Testimonial />
                 <Footer />
                 <Up />
-            </AuthProvider>
-        </TipContext.Provider>
+            </TipContext.Provider>
+        </AuthProvider>
     );
 };
 

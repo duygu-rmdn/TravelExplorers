@@ -1,6 +1,6 @@
 import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
 
-import { NotFound } from '../NoFound/NotFound';
 import { PhotoGrid } from '../PhotoGrid/PhotoGrid';
 import { CreateForm } from './CreateForm/CreateForm';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -9,7 +9,7 @@ export const Create = () => {
     const { isAuthenticated } = useContext(AuthContext);
     
     if (!isAuthenticated) {
-        return <NotFound />
+        return <Navigate to="/register" />
     }
 
     return (

@@ -1,11 +1,9 @@
-import { useContext } from 'react';
-
 import { useForm } from '../../../hooks/useForm';
 import { NotFound } from '../../NoFound/NotFound';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { useAuthContext } from '../../../contexts/AuthContext';
 
 export const LoginForm = () => {
-    const { onLoginSubmit, isAuthenticated } = useContext(AuthContext);
+    const { onLoginSubmit, isAuthenticated } = useAuthContext();
     
     const { values, changeHandler, onSubmit } = useForm({
         email: '',

@@ -4,14 +4,14 @@ import { TipContext } from '../../contexts/tipContext';
 import { tipServiceFactory } from '../../services/tipService';
 import { DeleteModal } from './DeleteModal/DeleteModal';
 import { useService } from '../../hooks/useService';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
 
 export const Details = () => {
     const { tipId } = useParams();
     const [tip, setTip] = useState({});
     //const [reviews, setReviews] = useState('');
     const { onDeleteClick } = useContext(TipContext);
-    const { isAuthenticated, userId } = useContext(AuthContext);
+    const { isAuthenticated, userId } = useAuthContext(AuthContext);
     const tipService = useService(tipServiceFactory);
 
     const isOwner = userId == tip.ownerId;
