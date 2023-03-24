@@ -1,10 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { TipContext } from '../../contexts/tipContext';
-import { tipServiceFactory } from '../../services/tipService';
-import { DeleteModal } from './DeleteModal/DeleteModal';
+
 import { useService } from '../../hooks/useService';
+import { TipContext } from '../../contexts/tipContext';
+import { DeleteModal } from './DeleteModal/DeleteModal';
+import * as reviewService from '../../services/reviewService'
+import { tipServiceFactory } from '../../services/tipService';
 import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
+
+import { CreateReview } from './CreateReview/CreateReview';
 
 export const Details = () => {
     const { tipId } = useParams();
@@ -14,14 +18,28 @@ export const Details = () => {
     const { isAuthenticated, userId } = useAuthContext(AuthContext);
     const tipService = useService(tipServiceFactory);
 
-    const isOwner = userId == tip.ownerId;
+    const isOwner = tip.ownerId === userId;
 
     useEffect(() => {
-        tipService.getOne(tipId)
-            .then(result => {
-                setTip(result);
+        Promise.all([
+            tipService.getOne(tipId),
+            reviewService.getAll(tipId)
+        ]).then(([tipData, reviews]) => {
+            setTip({
+                ...tipData,
+                reviews
             });
+        });
     }, [tipId]);
+
+    const onReviewSubmit = async (values) => {
+        const response = await reviewService.create(tipId, values.review);
+
+        setTip(state => ({
+            ...state,
+            reviews: [...state.reviews, response]
+        }));
+    };
 
     return (
         <div className="container-xxl py-5">
@@ -67,6 +85,16 @@ export const Details = () => {
                         </div>
                         <p>Conclusion: </p>
                         <h6 className="mb-4">{tip.conclusion} </h6>
+                        <p>Reviews:</p>
+                        <ul>
+                            {tip.reviews && tip.reviews.map(x => {
+                                return (
+                                    <li key={x._id}>
+                                        <p>{x.review}</p>
+                                    </li>
+                                )
+                            })}
+                        </ul>
                         <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
                             Back to tips
                         </Link> {" "}
@@ -83,6 +111,8 @@ export const Details = () => {
                     </div>
                     <DeleteModal tipId={tipId} />
 
+
+                    {isAuthenticated && <CreateReview onReviewSubmit={onReviewSubmit} />}
                 </div>
             </div>
         </div>

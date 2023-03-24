@@ -1,5 +1,9 @@
 >Todo
 
-**categories**
+*categories*
 
-**authorization on edit!**
+*authorization on edit!*
+
+*useTipContext*
+
+*commentBase url*
