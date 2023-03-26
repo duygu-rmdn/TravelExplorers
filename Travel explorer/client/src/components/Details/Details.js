@@ -15,7 +15,7 @@ export const Details = () => {
     const [tip, setTip] = useState({});
     //const [reviews, setReviews] = useState('');
     const { onDeleteClick } = useContext(TipContext);
-    const { isAuthenticated, userId } = useAuthContext(AuthContext);
+    const { isAuthenticated, userId, username, email } = useAuthContext(AuthContext);
     const tipService = useService(tipServiceFactory);
 
     const isOwner = tip.ownerId === userId;
@@ -37,7 +37,16 @@ export const Details = () => {
 
         setTip(state => ({
             ...state,
-            reviews: [...state.reviews, response]
+            reviews: [
+                ...state.reviews, 
+                {
+                    ...response,
+                    author: {
+                        username,
+                        email
+                    }
+                }
+            ]
         }));
     };
 
@@ -90,10 +99,12 @@ export const Details = () => {
                             {tip.reviews && tip.reviews.map(x => {
                                 return (
                                     <li key={x._id}>
-                                        <p>{x.review}</p>
+                                        <p><b>{x.author.username ?? x.author.email}</b>: {x.review}</p>
                                     </li>
                                 )
                             })}
+
+                            {!tip.reviews?.length && <h5> There is no reviews!</h5>}
                         </ul>
                         <Link to={"/tips"} className="btn btn-primary py-3 px-5 mt-2" >
                             Back to tips
