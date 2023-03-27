@@ -38,7 +38,7 @@ export const Details = () => {
         setTip(state => ({
             ...state,
             reviews: [
-                ...state.reviews, 
+                ...state.reviews,
                 {
                     ...response,
                     author: {
@@ -94,12 +94,17 @@ export const Details = () => {
                         </div>
                         <p>Conclusion: </p>
                         <h6 className="mb-4">{tip.conclusion} </h6>
+
+                        <hr style={{ height: 3, borderWidth: 0, color: "orange", backgroundColor: "orange" }} />
+
                         <p>Reviews:</p>
                         <ul>
                             {tip.reviews && tip.reviews.map(x => {
                                 return (
                                     <li key={x._id}>
-                                        <p><b>{x.author.username ?? x.author.email}</b>: {x.review}</p>
+                                        <div className="border rounded p-1 m-1">
+                                            <p><b>{x.author.username ?? x.author.email}</b>: {x.review}</p>
+                                        </div>
                                     </li>
                                 )
                             })}

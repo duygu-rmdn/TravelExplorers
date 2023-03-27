@@ -22,12 +22,13 @@ import { Register } from './components/Register/Register';
 import { Categories } from './components/Categories/Categories';
 import { Testimonial } from './components/Testimonial/Testimonial';
 import { NotFound } from './components/NoFound/NotFound';
+import { RouteGuard } from './components/common/RouteGuard';
 
 function App() {
     const navigate = useNavigate();
     const [tips, setTips] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const tipService = tipServiceFactory(); 
+    const tipService = tipServiceFactory();
 
 
     useEffect(() => {
@@ -84,28 +85,30 @@ function App() {
 
 
     return (
-            <TipContext.Provider value={contextValue}>
-                <Header />
-                <div className="container-xxl bg-white p-0">
-                    {/* <Spiner /> */}
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/about' element={<About />} />
-                        <Route path='/tips' element={<TipList />} />
-                        <Route path='/categories' element={<Categories />} />
+        <TipContext.Provider value={contextValue}>
+            <Header />
+            <div className="container-xxl bg-white p-0">
+                {/* <Spiner /> */}
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/tips' element={<TipList />} />
+                    <Route path='/categories' element={<Categories />} />
+                    <Route element={<RouteGuard />}>
                         <Route path='/create' element={<Create />} />
                         <Route path='/edit/:tipId' element={<Edit />} />
-                        <Route path='/tips/:tipId' element={<Details />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
                         <Route path='/logout' element={<Logout />} />
-                        <Route path='*' element={<NotFound />} />
-                    </Routes>
-                </div>
-                <Testimonial />
-                <Footer />
-                <Up />
-            </TipContext.Provider>
+                    </Route>
+                    <Route path='/tips/:tipId' element={<Details />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/register' element={<Register />} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </div>
+            <Testimonial />
+            <Footer />
+            <Up />
+        </TipContext.Provider>
     );
 };
 

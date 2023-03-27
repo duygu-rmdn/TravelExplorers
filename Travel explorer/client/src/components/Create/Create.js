@@ -1,17 +1,7 @@
-import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-
 import { PhotoGrid } from '../PhotoGrid/PhotoGrid';
 import { CreateForm } from './CreateForm/CreateForm';
-import { AuthContext } from '../../contexts/AuthContext';
 
 export const Create = () => {
-    const { isAuthenticated } = useContext(AuthContext);
-    
-    if (!isAuthenticated) {
-        return <Navigate to="/register" />
-    }
-
     return (
         <div className="container-xxl py-5">
             <div className="container">
