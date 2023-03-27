@@ -27,7 +27,7 @@ function App() {
     const navigate = useNavigate();
     const [tips, setTips] = useState([]);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const tipService = tipServiceFactory(); //auth.accessToken
+    const tipService = tipServiceFactory(); 
 
 
     useEffect(() => {

@@ -20,7 +20,7 @@ export const CreateForm = () => {
         country: '',
         maxPrice: '',
         nights: '',
-        ownerId: userId
+        ownerId: userId,
     }, onTipAddSubmit);
 
     return (
