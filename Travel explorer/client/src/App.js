@@ -84,7 +84,6 @@ function App() {
 
 
     return (
-        <AuthProvider>
             <TipContext.Provider value={contextValue}>
                 <Header />
                 <div className="container-xxl bg-white p-0">
@@ -107,7 +106,6 @@ function App() {
                 <Footer />
                 <Up />
             </TipContext.Provider>
-        </AuthProvider>
     );
 };
 

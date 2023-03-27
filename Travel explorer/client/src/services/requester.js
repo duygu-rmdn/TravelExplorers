@@ -12,7 +12,6 @@ const requester = async (method, token, url, data) => {
             options.body = JSON.stringify(data);
         }
     }
-
     if (token) {
         options.headers = {
             ...options.headers,
@@ -38,7 +37,6 @@ const requester = async (method, token, url, data) => {
 export const requestFactory = (token) => {
     if (!token) {
         const serializedAuth = localStorage.getItem('auth');
-
         if (serializedAuth) {
             const auth = JSON.parse(serializedAuth);
             token = auth.accessToken;
