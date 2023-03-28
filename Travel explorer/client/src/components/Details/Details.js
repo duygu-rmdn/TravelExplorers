@@ -32,6 +32,7 @@ export const Details = () => {
         });
     }, [tipId]);
 
+
     const onReviewSubmit = async (values) => {
         const response = await reviewService.create(tipId, values.review);
 

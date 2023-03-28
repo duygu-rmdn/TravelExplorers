@@ -5,6 +5,7 @@ export const tipServiceFactory = (token) => {
     const request = requestFactory(token);
  
     const getAll = async () => {
+ 
         const result = await request.get(baseUrl);
         const tips = Object.values(result);
         
@@ -12,11 +13,13 @@ export const tipServiceFactory = (token) => {
     };
 
     const getOne = async (tipId) => {
+ 
         const result = await request.get(`${baseUrl}/${tipId}`);
         return result;
     };
 
     const create = async (tipData) => {
+ 
         if (tipData.category === '') {
             tipData.category = 'Sea'
         }
@@ -29,11 +32,15 @@ export const tipServiceFactory = (token) => {
     };
 
     const remove = async (tipId) => {
+        
+ 
         const result = await request.delete(`${baseUrl}/${tipId}`);
         return result;
     };
 
     const update = async (tipId, tipData) => {
+        
+ 
         const result = await request.put(`${baseUrl}/${tipId}`, tipData);
         return result;
     }
