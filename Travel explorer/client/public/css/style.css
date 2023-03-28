@@ -191,7 +191,7 @@
 
 /*** Service ***/
 .service-item {
-    height: 320px;
+    /* height: 320px; */
     padding: 30px;
     display: flex;
     flex-direction: column;

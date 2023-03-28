@@ -1,6 +1,7 @@
 import { requestFactory } from './requester';
+import { baseUrlForReviews } from '.././constants'
 
-const baseUrl = 'http://localhost:3030/data/reviews';
+const baseUrl = baseUrlForReviews;
 
 export const getAll = async (tipId) => {
     const request = requestFactory();
