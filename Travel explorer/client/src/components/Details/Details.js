@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { useService } from '../../hooks/useService';
-import { TipContext } from '../../contexts/tipContext';
+import { TipContext } from '../../contexts/TipContext';
 import { DeleteModal } from './DeleteModal/DeleteModal';
 import * as reviewService from '../../services/reviewService'
 import { tipServiceFactory } from '../../services/tipService';

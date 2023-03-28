@@ -3,7 +3,7 @@ import { useForm } from '../../../hooks/useForm';
 import countryList from 'react-select-country-list';
 
 import { categories } from '../../../constants';
-import { TipContext } from '../../../contexts/tipContext';
+import { TipContext } from '../../../contexts/TipContext';
 import { AuthContext } from '../../../contexts/AuthContext';
 
 export const CreateForm = () => {

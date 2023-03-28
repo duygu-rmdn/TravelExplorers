@@ -5,11 +5,8 @@ import { categories } from '../../../constants';
 import { useForm } from '../../../hooks/useForm';
 import { useService } from '../../../hooks/useService';
 
-import { TipContext } from '../../../contexts/tipContext';
-import { AuthContext } from '../../../contexts/AuthContext';
+import { TipContext } from '../../../contexts/TipContext';
 import { tipServiceFactory } from '../../../services/tipService';
-import { NotFound } from '../../NoFound/NotFound';
-import { Navigate } from 'react-router-dom';
 
 export const EditForm = ({ tipId }) => {
     const tipService = useService(tipServiceFactory);

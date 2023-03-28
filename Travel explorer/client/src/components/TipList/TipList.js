@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { TipItem } from './TipItem/TipItem';
-import { TipContext } from '../../contexts/tipContext';
+import { TipContext } from '../../contexts/TipContext';
 
 export const TipList = () => {
     const { tips } = useContext(TipContext);

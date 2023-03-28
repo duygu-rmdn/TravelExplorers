@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { TipContext } from '../../../contexts/tipContext';
+import { TipContext } from '../../../contexts/TipContext';
 
 export const DeleteModal = ({ tipId }) => {
     const { onTipDeleteClose,
