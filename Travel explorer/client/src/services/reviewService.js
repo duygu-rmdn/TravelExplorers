@@ -26,4 +26,12 @@ export const create = async (tipId, review) => {
     } catch (error) {
         console.log(error.message)
     }
-}
+};
+
+export const getCount = async () => {
+    const request = requestFactory();
+    const result = await request.get(baseUrl);
+    const reviews = Object.values(result);
+    
+    return reviews.length;
+};

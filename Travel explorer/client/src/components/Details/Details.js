@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useService } from '../../hooks/useService';
 import { TipContext } from '../../contexts/TipContext';
 import { DeleteModal } from './DeleteModal/DeleteModal';
-import * as reviewService from '../../services/reviewService'
+import * as reviewService from '../../services/reviewService';
 import { tipServiceFactory } from '../../services/tipService';
 import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
 
@@ -128,7 +128,6 @@ export const Details = () => {
                         }
                     </div>
                     <DeleteModal tipId={tipId} />
-
 
                     {isAuthenticated && <CreateReview onReviewSubmit={onReviewSubmit} />}
                 </div>
