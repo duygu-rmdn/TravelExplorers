@@ -120,6 +120,7 @@ export const Details = () => {
                                 Update tip
                             </Link >
                             {" "}
+                            <></>
                             <button className="btn btn-danger py-3 px-5 mt-2" onClick={() => onDeleteClick(tip._id)}>
                                 Delete tip
                             </button >

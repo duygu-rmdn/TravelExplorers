@@ -51,11 +51,14 @@ export const TipProvider = ({
         navigate(`/tips/${values._id}`);
     };
 
-
+    const getTip = (tipId) => {
+        return tips.find(x => x._id === tipId);
+    }
 
     const contextValue = {
         tips,
         showDeleteModal,
+        getTip,
         onDeleteClick,
         onTipAddSubmit,
         onTipDeleteClose,

@@ -8,8 +8,8 @@ import { TipContext } from '../../../contexts/TipContext';
 
 export const DeleteModal = ({ tipId }) => {
     const { onTipDeleteClose,
-            onTipDeleteSumit,
-            showDeleteModal } = useContext(TipContext);
+        onTipDeleteSumit,
+        showDeleteModal } = useContext(TipContext);
 
     return (
         <Modal show={showDeleteModal}>
