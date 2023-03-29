@@ -30,7 +30,7 @@ export const TipItem = ({
                     </p>
                     <div className="d-flex justify-content-between">
                         <Link to={`/tips/${_id}`} className="btn btn-sm btn-dark rounded py-2 px-4">
-                            View Detail
+                            View Details
                         </Link>
                     </div>
                 </div>

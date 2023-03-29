@@ -1,8 +1,8 @@
 import  {categories} from '../../constants';
-import { CategoryItem } from './CategoryItem/CategoryItem';
-export const Categories = () => {
-    console.log(categories)
 
+import { CategoryItem } from './CategoryItem/CategoryItem';
+
+export const Categories = () => {
     return (
         <div className="container-xxl py-5">
             <div className="container">
