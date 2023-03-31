@@ -1,9 +1,5 @@
 # Todo
 
-> *categories => tips with this categories*
-
-> *edit footer*
-
 > *search*
 
 > *Readme.md*

@@ -1,3 +1,7 @@
+import { Link } from 'react-router-dom';
+
+import { categories } from '../../constants';
+
 export const Footer = () => {
     return (
         <div
@@ -12,90 +16,36 @@ export const Footer = () => {
                                 <h1 className="text-white text-uppercase mb-3">Travel Explorer</h1>
                             </a>
                             <p className="text-white mb-0">
-                                Download{" "}
-                                <a
-                                    className="text-dark fw-medium"
-                                    href="https://htmlcodex.com/hotel-html-template-pro"
-                                >
-                                    Hotelier – Premium Version
-                                </a>
-                                , build a professional website for your hotel business and grab
-                                the attention of new visitors upon your site’s launch.
+                            This website has been created solely for educational purposes.
                             </p>
-                        </div>
-                    </div>
-                    <div className="col-md-6 col-lg-3">
-                        <h6 className="section-title text-start text-primary text-uppercase mb-4">
-                            Contact
-                        </h6>
-                        <p className="mb-2">
-                            <i className="fa fa-map-marker-alt me-3" />
-                            123 Street, New York, USA
-                        </p>
-                        <p className="mb-2">
-                            <i className="fa fa-phone-alt me-3" />
-                            +012 345 67890
-                        </p>
-                        <p className="mb-2">
-                            <i className="fa fa-envelope me-3" />
-                            info@example.com
-                        </p>
-                        <div className="d-flex pt-2">
-                            <a className="btn btn-outline-light btn-social" href="">
-                                <i className="fab fa-twitter" />
-                            </a>
-                            <a className="btn btn-outline-light btn-social" href="">
-                                <i className="fab fa-facebook-f" />
-                            </a>
-                            <a className="btn btn-outline-light btn-social" href="">
-                                <i className="fab fa-youtube" />
-                            </a>
-                            <a className="btn btn-outline-light btn-social" href="">
-                                <i className="fab fa-linkedin-in" />
-                            </a>
                         </div>
                     </div>
                     <div className="col-lg-5 col-md-12">
                         <div className="row gy-5 g-4">
                             <div className="col-md-6">
                                 <h6 className="section-title text-start text-primary text-uppercase mb-4">
-                                    Company
+                                    Pages
                                 </h6>
-                                <a className="btn btn-link" href="">
+                                <Link className="btn btn-link" to={"/"}>
+                                    Home
+                                </Link>
+                                <Link className="btn btn-link" to={"/about"}>
                                     About Us
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Contact Us
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Privacy Policy
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Terms &amp; Condition
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Support
-                                </a>
+                                </Link>
+                                <Link className="btn btn-link" to={"/tips"}>
+                                    Tips
+                                </Link>
+                                <Link className="btn btn-link" to={"/create"}>
+                                    Create
+                                </Link>
                             </div>
                             <div className="col-md-6">
                                 <h6 className="section-title text-start text-primary text-uppercase mb-4">
-                                    Services
+                                    Categories
                                 </h6>
-                                <a className="btn btn-link" href="">
-                                    Food &amp; Restaurant
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Spa &amp; Fitness
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Sports &amp; Gaming
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    Event &amp; Party
-                                </a>
-                                <a className="btn btn-link" href="">
-                                    GYM &amp; Yoga
-                                </a>
+                                {categories.map(x => <Link key={x.id} className="btn btn-link" to={`/categories/${x.id}`}>
+                                    {x.name}
+                                </Link>)}
                             </div>
                         </div>
                     </div>

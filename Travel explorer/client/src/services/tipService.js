@@ -21,7 +21,7 @@ export const tipServiceFactory = (token) => {
     const create = async (tipData) => {
  
         if (tipData.category === '') {
-            tipData.category = 'Sea'
+            tipData.category = 'Adventure Travel'
         }
 
         if (tipData.country === '') {

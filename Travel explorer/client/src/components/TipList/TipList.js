@@ -1,11 +1,19 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { TipItem } from './TipItem/TipItem';
 import { TipContext } from '../../contexts/TipContext';
+import { categories } from '../../constants';
 
 export const TipList = () => {
-    const { tips } = useContext(TipContext);
+    const {categoryId} = useParams();
+    let { tips } = useContext(TipContext);
+
+    if (categoryId) {
+        const category = categories.filter(x => x.id == categoryId)[0].name;
+        tips = tips.filter(x => x.category === category);
+    }
+
     return (
         <div className="container-xxl py-5">
             <div className="container">

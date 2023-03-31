@@ -39,6 +39,7 @@ function App() {
                             <Route path='/logout' element={<Logout />} />
                         </Route>
                         <Route path='/tips/:tipId' element={<Details />} />
+                        <Route path='/categories/:categoryId' element={<TipList />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='*' element={<NotFound />} />
