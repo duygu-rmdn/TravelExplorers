@@ -59,7 +59,6 @@ export const useForm = (initialValues, onSubmitHandler) => {
             errors = 'Review must be at least 5 charecters long!';
         }
        } catch (error) {
-        
        }
 
         setValidate(errors);
