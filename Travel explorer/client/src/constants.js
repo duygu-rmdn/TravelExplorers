@@ -1,4 +1,4 @@
-export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3030/data/tips' : 'http://localhost:3031/data/tips';
+export const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3030/data/tips' : 'http://localhost:3030/data/tips';
 export const baseUrlForReviews = 'http://localhost:3030/data/reviews';
 
 export const categories = [
