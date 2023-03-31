@@ -14,7 +14,7 @@ export const getAll = async (tipId) => {
         const reviews = Object.values(result);
         return reviews;
     } catch (error) {
-        console.log(error.message)
+        console.log('Cannot get reviews!');
     }
 };
 
@@ -25,14 +25,18 @@ export const create = async (tipId, review) => {
     
         return result;
     } catch (error) {
-        console.log(error.message)
+        console.log('Cannot create this review!');
     }
 };
 
 export const getCount = async () => {
-    const request = requestFactory();
-    const result = await request.get(baseUrl);
-    const reviews = Object.values(result);
-    
-    return reviews.length;
+    try {
+        const request = requestFactory();
+        const result = await request.get(baseUrl);
+        const reviews = Object.values(result);
+        
+        return reviews.length;
+    } catch (error) {
+        console.log('Cannot get reviews count!');
+    }
 };

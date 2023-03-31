@@ -34,7 +34,11 @@ export const Details = () => {
 
 
     const onReviewSubmit = async (values) => {
-        const response = await reviewService.create(tipId, values.review);
+        const review = values.review.trim();
+        if (review == '') {
+            return;
+        }
+        const response = await reviewService.create(tipId, review);
 
         setTip(state => ({
             ...state,

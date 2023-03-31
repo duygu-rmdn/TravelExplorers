@@ -13,7 +13,7 @@ export const EditForm = ({ tipId }) => {
     const options = useMemo(() => countryList().getData(), []);
     const { onTipUpdateSubmit } = useContext(TipContext);
 
-    const { values, changeHandler, onSubmit, changeValues } = useForm({
+    const { values, changeHandler, onSubmit, changeValues, showValidation } = useForm({
         _id: '',
         title: '',
         category: '',
@@ -36,6 +36,7 @@ export const EditForm = ({ tipId }) => {
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">
+            {showValidation !== '' && <p style={{ color: 'red' }}>{showValidation}</p>}
                 <form onSubmit={onSubmit}>
                     <div className="row g-3">
                         <div className="col-md-12">

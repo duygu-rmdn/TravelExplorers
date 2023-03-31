@@ -11,7 +11,7 @@ export const CreateForm = () => {
     const { onTipAddSubmit } = useContext(TipContext);
     const options = useMemo(() => countryList().getData(), []);
 
-    const { values, changeHandler, onSubmit } = useForm({
+    const { values, changeHandler, onSubmit, showValidation } = useForm({
         title: '',
         category: '',
         imageUrl: '',
@@ -26,9 +26,11 @@ export const CreateForm = () => {
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">
+                {showValidation !== '' && <p style={{ color: 'red' }}>{showValidation}</p>}
                 <form onSubmit={onSubmit}>
                     <div className="row g-3">
                         <div className="col-md-12">
+                        {/* <div {showValidation.title && style={{border: '1px solid red'}}}> */}
                             <div className="form-floating">
                                 <input
                                     value={values.title}
@@ -41,6 +43,7 @@ export const CreateForm = () => {
                                 />
                                 <label htmlFor="title">Title</label>
                             </div>
+                            {/* </div> */}
                         </div>
                         <div className="col-md-6">
                             <div className="form-floating">

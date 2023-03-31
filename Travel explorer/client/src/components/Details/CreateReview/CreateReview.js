@@ -3,15 +3,14 @@ import { useForm } from '../../../hooks/useForm';
 export const CreateReview = ({
     onReviewSubmit
 }) => {
-    const {values, changeHandler, onSubmit } = useForm({
+    const {values, changeHandler, onSubmit, showValidation } = useForm({
         review: ''
     }, onReviewSubmit);
-
 
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">
-                
+            {showValidation !== '' && <p style={{ color: 'red' }}>{showValidation}</p>}
                 <form onSubmit={onSubmit}>
                     <div className="row g-3">
                         <div className="col-md-12">

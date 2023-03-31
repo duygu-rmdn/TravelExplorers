@@ -6,43 +6,51 @@ export const tipServiceFactory = (token) => {
  
     const getAll = async () => {
  
-        const result = await request.get(baseUrl);
-        const tips = Object.values(result);
-        
-        return tips;
+        try {
+            const result = await request.get(baseUrl);
+            const tips = Object.values(result);
+            
+            return tips;
+        } catch (error) {
+            console.log('Cannot get tips!');
+        }
     };
 
     const getOne = async (tipId) => {
  
-        const result = await request.get(`${baseUrl}/${tipId}`);
-        return result;
+        try {
+            const result = await request.get(`${baseUrl}/${tipId}`);
+            return result;
+        } catch (error) {
+            console.log('Cannot get this tip!');
+        }
     };
 
     const create = async (tipData) => {
- 
-        if (tipData.category === '') {
-            tipData.category = 'Adventure Travel'
+        try {
+            const result = await request.post(baseUrl, tipData);
+            return result;
+        } catch (error) {
+            console.log('Cannot create this tip!');
         }
-
-        if (tipData.country === '') {
-            tipData.country = 'Afghanistan';
-        }
-        const result = await request.post(baseUrl, tipData);
-        return result;
     };
 
     const remove = async (tipId) => {
-        
- 
-        const result = await request.delete(`${baseUrl}/${tipId}`);
-        return result;
+        try {
+            const result = await request.delete(`${baseUrl}/${tipId}`);
+            return result;
+        } catch (error) {
+            console.log('Cannot remove this tip!');
+        }
     };
 
     const update = async (tipId, tipData) => {
-        
- 
-        const result = await request.put(`${baseUrl}/${tipId}`, tipData);
-        return result;
+        try {
+            const result = await request.put(`${baseUrl}/${tipId}`, tipData);
+            return result;
+        } catch (error) {
+            console.log('Cannot update this tip!');
+        }
     }
 
     return {
