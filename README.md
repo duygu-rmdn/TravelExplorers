@@ -30,6 +30,10 @@ At Travel Explorer, we believe that travel is more than just visiting new places
 </ul>
 <h2>Testing</h2>
 <p>This project is tested by unit tests</p>
+<ul>
+<li>Test Suites: 23+ tests</li>
+<li>Tests: 33+ tests</li>
+</ul>
 <h2>Technologies Used</h2>
 <p>This website is designed and runs using the main technologies below:</p>
 <ul>
