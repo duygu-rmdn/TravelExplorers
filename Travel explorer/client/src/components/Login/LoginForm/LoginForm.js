@@ -1,5 +1,5 @@
 import { useForm } from '../../../hooks/useForm';
-import { NotFound } from '../../NoFound/NotFound';
+import { NotFound } from '../../NotFound/NotFound';
 import { useAuthContext } from '../../../contexts/AuthContext';
 
 export const LoginForm = () => {

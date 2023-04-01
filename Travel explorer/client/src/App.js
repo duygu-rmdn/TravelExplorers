@@ -15,7 +15,7 @@ import { Footer } from './components/Footer/Footer';
 import { Details } from './components/Details/Details';
 // import { Spiner } from './components/Spiner/Spiner';
 import { TipList } from './components/TipList/TipList';
-import { NotFound } from './components/NoFound/NotFound';
+import { NotFound } from './components/NotFound/NotFound';
 import { Register } from './components/Register/Register';
 import { RouteGuard } from './components/common/RouteGuard';
 import { Categories } from './components/Categories/Categories';

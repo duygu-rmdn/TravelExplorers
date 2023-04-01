@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { useForm } from '../../../hooks/useForm';
-import { NotFound } from '../../NoFound/NotFound';
+import { NotFound } from '../../NotFound/NotFound';
 import { AuthContext } from '../../../contexts/AuthContext';
 
 export const RegisterForm = () => {
