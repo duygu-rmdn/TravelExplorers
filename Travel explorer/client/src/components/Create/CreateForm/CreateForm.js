@@ -30,7 +30,6 @@ export const CreateForm = () => {
                 <form onSubmit={onSubmit}>
                     <div className="row g-3">
                         <div className="col-md-12">
-                        {/* <div {showValidation.title && style={{border: '1px solid red'}}}> */}
                             <div className="form-floating">
                                 <input
                                     value={values.title}
@@ -43,7 +42,6 @@ export const CreateForm = () => {
                                 />
                                 <label htmlFor="title">Title</label>
                             </div>
-                            {/* </div> */}
                         </div>
                         <div className="col-md-6">
                             <div className="form-floating">
@@ -102,7 +100,7 @@ export const CreateForm = () => {
                                     type="number"
                                     className="form-control"
                                     id="maxPrice"
-                                    placeholder="Title"
+                                    placeholder="Max Price"
                                 />
                                 <label htmlFor="maxPrice">Max Price</label>
                             </div>

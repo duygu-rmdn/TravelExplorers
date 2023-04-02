@@ -37,12 +37,11 @@ export const Carousel = () => {
                                 <h1 className="display-3 text-white mb-4 animated slideInDown">
                                     Discover A Brand Luxurious Hotel
                                 </h1>
-                                <a
-                                    href=""
+                                <Link to={'/tips'}
                                     className="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
                                 >
-                                    Blog
-                                </a>
+                                    tips
+                                </Link>
                             </div>
                         </div>
                     </div>

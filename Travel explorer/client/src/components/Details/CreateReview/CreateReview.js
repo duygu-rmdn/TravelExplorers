@@ -3,14 +3,14 @@ import { useForm } from '../../../hooks/useForm';
 export const CreateReview = ({
     onReviewSubmit
 }) => {
-    const {values, changeHandler, onSubmit, showValidation } = useForm({
+    const { values, changeHandler, onSubmit, showValidation } = useForm({
         review: ''
     }, onReviewSubmit);
 
     return (
         <div className="col-lg-6">
             <div className="wow fadeInUp" data-wow-delay="0.2s">
-            {showValidation !== '' && <p style={{ color: 'red' }}>{showValidation}</p>}
+                {showValidation !== '' && <p style={{ color: 'red' }}>{showValidation}</p>}
                 <form onSubmit={onSubmit}>
                     <div className="row g-3">
                         <div className="col-md-12">
@@ -21,8 +21,8 @@ export const CreateReview = ({
                                     className="form-control"
                                     id="review"
                                     placeholder="Review"
-                                value={values.review}
-                                onChange={changeHandler}
+                                    value={values.review}
+                                    onChange={changeHandler}
                                 />
                                 <label htmlFor="review">Add Review</label>
                             </div>
