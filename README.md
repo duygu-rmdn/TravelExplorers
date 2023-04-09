@@ -37,7 +37,7 @@ At Travel Explorer, we believe that travel is more than just visiting new places
 <h2>Technologies Used</h2>
 <p>This website is designed and runs using the main technologies below:</p>
 <ul>
-<li>JavaScrip</li>
+<li>JavaScript</li>
 <li>React Framework</li>
 <li>Node.js</li>
 <li>HTML5</li>
